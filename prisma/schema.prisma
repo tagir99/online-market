@@ -30,23 +30,22 @@ model Product {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  name        String   @unique
-  slug        String   @unique
-  brand       String
-  description String
-  price       Int
-  images      String[]
-  volume      String
+  name         String           @unique
+  slug         String           @unique
+  brand        String
+  description  String
+  price        Int
+  images       String[]
+  volume       String
+  availability AvailabaleStatus @default(HAVE)
 
   orderItems OrderItem[]
 
   category   Category? @relation(fields: [categoryId], references: [id])
   categoryId Int?      @map("category_id")
 
-  user    User?  @relation(fields: [userId], references: [id])
-  userId  Int?   @map("user_id")
-  Brand   Brand? @relation(fields: [brandId], references: [id])
-  brandId Int?
+  user   User? @relation(fields: [userId], references: [id])
+  userId Int?  @map("user_id")
 }
 
 model Category {
@@ -91,20 +90,14 @@ model OrderItem {
   @@map("Order_item")
 }
 
-model Brand {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-
-  name String @unique
-  slug String @unique
-
-  products Product[]
-}
-
 enum EnumOrderStatus {
   PENDING
   PAYED
   SHIPPED
   DELIVERED
+}
+
+enum AvailabaleStatus {
+  HAVE
+  DONOT
 }
