@@ -47,6 +47,17 @@ export class SendMailService {
 		})
 	}
 
+	// private async randomNumber() {
+	// 	let result = ''
+	// 	const characters =
+	// 		'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+	// 	const charactersLength = characters.length
+	// 	let counter = 0
+	// 	while (counter < 10) {
+	// 		result += characters.charAt(Math.floor(Math.random() * charactersLength))
+	// 		counter += 1
+	// }}
+
 	private async issueTokens(userId: number) {
 		const data = { id: userId }
 

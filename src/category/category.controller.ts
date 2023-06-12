@@ -14,20 +14,20 @@ import { Auth } from '../auth/decoratosrs/auth.devorator'
 import { CategoryDto } from './category.dto'
 import { CategoryService } from './category.service'
 
-@Controller('catigories')
+@Controller('categories')
 export class CategoryController {
 	constructor(private readonly categoryService: CategoryService) {}
 
-	@Get('id')
+	@Get(':id')
 	@Auth()
 	async getByIdl(@Param('id') id: string) {
 		return this.categoryService.byId(+id)
 	}
 
-	// @Get('by-slug/:slug') -- Get By Slug
-	// async getBySlug(@Param('slug') slug: string) {
-	// 	return this.categoryService.bySlug(slug)
-	// }
+	@Get('by-slug/:slug')
+	async getBySlug(@Param('slug') slug: string) {
+		return this.categoryService.bySlug(slug)
+	}
 
 	@Get()
 	async getAll() {
