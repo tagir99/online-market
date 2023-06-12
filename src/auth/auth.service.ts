@@ -8,12 +8,13 @@ import { JwtService } from '@nestjs/jwt'
 import { hash, verify } from 'argon2'
 import { PrismaService } from 'src/prisma.service'
 import { AuthDto } from './dto/auth.dto'
+import { loginDto } from './dto/login.dto'
 
 @Injectable()
 export class AuthService {
 	constructor(private prisma: PrismaService, private jwt: JwtService) {}
 
-	async login(dto: AuthDto) {
+	async login(dto: loginDto) {
 		const user = await this.validateUser(dto)
 		const tokens = await this.issueTokens(user.id)
 
@@ -103,7 +104,7 @@ export class AuthService {
 		}
 	}
 
-	private async validateUser(dto: AuthDto) {
+	private async validateUser(dto: loginDto) {
 		// получение юзера
 		const user = await this.prisma.user.findUnique({
 			where: {

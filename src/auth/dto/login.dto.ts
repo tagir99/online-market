@@ -1,6 +1,6 @@
 import { IsEmail, IsString, MaxLength, MinLength } from 'class-validator'
 
-export class AuthDto {
+export class loginDto {
 	@MinLength(6)
 	@MaxLength(50)
 	@IsEmail()
@@ -12,11 +12,4 @@ export class AuthDto {
 	@MaxLength(45)
 	@IsString()
 	password: string
-
-	@MaxLength(20)
-	phone: string
-
-	@IsString()
-	@MaxLength(65)
-	name: string
 }

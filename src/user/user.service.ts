@@ -14,6 +14,7 @@ export class UserService {
 	constructor(private prisma: PrismaService) {}
 
 	// Метод byId будет переиспользоваться
+	// include для модели user выводит favorites, orders
 	async byId(id: number, selectObject: Prisma.UserSelect = {}) {
 		const user = await this.prisma.user.findUnique({
 			where: {
